@@ -24,6 +24,15 @@ angular.module("pains").controller("customerController", function ($scope, $http
             icon: 'group_add'
         }
     ];
+
+    $scope.deleteCustomer = function(id){
+        $http.delete('/customer/'+id)
+        .then(function(){
+            alert("SUCCESS")
+        },function(error){
+            alert("there was an error in deletion");
+        });
+    }
     $http.get('/customer')
     .then(function(data){
         $scope.customers = data.data;

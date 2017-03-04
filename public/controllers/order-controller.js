@@ -38,6 +38,16 @@ angular.module("pains").controller("orderController", function ($scope, $http, $
         alert("There was an error fetching Labours");
     });
 
+
+    $scope.deleteOrder = function(id){
+        $http.delete('/order/'+id)
+        .then(function(){
+            alert("SUCCESS")
+        },function(error){
+            alert("there was an error in deletion");
+        });
+    }
+
     $http.get('/customer')
     .then(function(data){
         $scope.customers = data.data;

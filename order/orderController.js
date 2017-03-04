@@ -19,7 +19,8 @@ module.exports = {
                 });
             }
             return res.json(orders);
-        });
+        })
+        .populate("customerid",['cname','phone1']);
     },
 
     /**

@@ -50,9 +50,19 @@
         </md-toolbar>
 
 
-<div ng-repeat="customer in customers">{{customer.cname}}</div>
+<!--<div ng-repeat="customer in customers">{{customer.cname}}</div>-->
 
-
+        <md-list>
+                <md-list-item class="md-2-line md-whiteframe-2dp" ng-repeat="customer in customers">
+                    <div class="md-list-item-text" layout="column">
+                        <h3><b>Customer ID: </b> {{ customer._id }}</h3>
+                        <h4> <b>Customer Name: </b> {{ customer.cname }}</h4>
+                    </div>
+                    <md-button ng-click="deleteCustomer(customer._id)" class="md-icon-button md-secondary">
+                        <md-icon> delete </md-icon>
+                    </md-button>
+                </md-list-item>
+            </md-list>
         <form name="class" layout-padding ng-submit="submit()">
             <div layout="column">
                 <md-input-container>

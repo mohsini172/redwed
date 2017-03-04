@@ -38,6 +38,14 @@ angular.module("pains").controller("labourController", function ($scope, $http, 
             alert("there was an error in insertion");
         });
     }
+    $scope.deleteLabour = function(id){
+        $http.delete('/labour/'+id)
+        .then(function(){
+            alert("SUCCESS")
+        },function(error){
+            alert("there was an error in deletion");
+        });
+    }
     $scope.logout = function(){
         $http.post('/logout')
         .then(function(){

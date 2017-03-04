@@ -28,7 +28,7 @@
                         <md-icon> menu </md-icon>
                     </md-button>
                     <h2>
-                        <span>Customers</span>
+                        <span>Orders</span>
                     </h2>
                     <span flex></span>
 
@@ -48,7 +48,21 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-<div ng-repeat="order in orders">{{order}}</div>
+            <!--<div ng-repeat="order in orders">{{order}}</div>-->
+            <md-list>
+                <md-list-item class="md-3-line md-whiteframe-2dp" ng-repeat="order in orders">
+                    <div class="md-list-item-text" layout="column">
+                        <h3><b>Order ID: </b> {{ order._id }}</h3>
+                        <h4> <b>Dilivery Date: </b> {{ order.dlvdate }}</h4>
+                        <h4> <b>Quantity: </b> {{ order.qty }}<br />
+                            <b>Diliver To: </b> {{order.customerid.cname}} <b>Phone: </b> {{order.customerid.phone1}}
+                        </h4>
+                    </div>
+                    <md-button ng-click="deleteOrder(order._id)" class="md-icon-button md-secondary">
+                        <md-icon> delete </md-icon>
+                    </md-button>
+                </md-list-item>
+            </md-list>
             <form name="class" layout-padding ng-submit="submit()">
                 <div layout="column">
                     <div layout="row">
@@ -69,17 +83,17 @@
                     </div>
 
                     <div layout="row">
-                        <md-input-container flex = "50">
+                        <md-input-container flex="50">
                             <label>Customer Id</label>
                             <md-select name="customerid" ng-model="Order.customerid" required>
                                 <md-option ng-repeat="customer in customers" value="{{customer._id}}">{{customer.cname}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <md-input-container flex = "50">
+                        <md-input-container flex="50">
                             <label>Dilivery Date</label>
                             <md-datepicker ng-model="Order.dlvdate"></md-datepicker>
                         </md-input-container>
-                        <md-input-container flex = "50">
+                        <md-input-container flex="50">
                             <label>Order Date</label>
                             <md-datepicker ng-model="Order.orderdate"></md-datepicker>
                         </md-input-container>
