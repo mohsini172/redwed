@@ -1,0 +1,101 @@
+<div layout="column" style="height:100%;" ng-cloak>
+    <section layout="row" flex>
+
+
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="3" layout="column">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">PAINS</h1>
+            </md-toolbar>
+            <md-list>
+                <md-list-item ng-repeat="item in menu" md-ink-ripple>
+                    <a href="{{item.link}}" class="remove-underline">
+                        <md-item-content layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon> {{item.icon}} </md-icon>
+                            </div>
+                            <div class="inset">{{item.title}}
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+
+        <md-content flex>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <md-button ng-click="toggleLeft('left')" hide-gt-md class="md-icon-button" aria-label="Settings">
+                        <md-icon> menu </md-icon>
+                    </md-button>
+                    <h2>
+                        <span>Customers</span>
+                    </h2>
+                    <span flex></span>
+
+                    <md-menu>
+                        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                            <md-icon> more_vert </md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="logout()">
+                                    Logout
+                                </md-button>
+                            </md-menu-item>
+
+                            <!--<md-menu-divider></md-menu-divider>-->
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </md-toolbar>
+
+            <form name="class" layout-padding ng-submit="submit()">
+                <div layout="column">
+                    <md-input-container>
+                        <label>Labour Name</label>
+                        <input required name="cname" ng-model="Labour.cname">
+                        <div ng-messages="Labour.cname.$error">
+                            <div ng-message="required">Name is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Phone Number</label>
+                        <input required name="phone1" ng-model="Labour.phone1">
+                        <div ng-messages="Labour.phone1.$error">
+                            <div ng-message="required">Phone Number is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Category</label>
+                        <md-select name="category" ng-model="Labour.category" required>
+                            <md-option value="c1">Category 1</md-option>
+                            <md-option value="c2">Category 2</md-option>
+                        </md-select>
+
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Comments</label>
+                        <input required name="comments" ng-model="Labour.comments">
+                        <div ng-messages="Labour.comments.$error">
+                            <div ng-message="required">Comments is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Strength</label>
+                        <input required name="strength" ng-model="Labour.strength">
+                        <div ng-messages="Labour.strength.$error">
+                            <div ng-message="required">Strength is required.</div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container flex class="remove-margin">
+                        <label>Date</label>
+                        <md-datepicker ng-model="Labour.date" flex="100"></md-datepicker>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>
+                </div>
+            </form>
+        </md-content>
+    </section>
+</div>

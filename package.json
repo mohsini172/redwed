@@ -1,0 +1,19 @@
+{
+  "name": "redwed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mohsini172",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "connect-mongo": "^1.3.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.15.0",
+    "express-session": "^1.15.1",
+    "mongoose": "^4.8.5"
+  }
+}
