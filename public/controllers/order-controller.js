@@ -8,34 +8,26 @@ angular.module("pains").controller("orderController", function ($scope, $http, $
         }
     }
     $scope.items = [0];
+    $scope.Order = {};
+    $scope.Order.items = [];
     $scope.addItem = function(){
         $scope.items.push($scope.items[$scope.items.length-1]+1);
     }
     $scope.menu = [
         {
             link: '#/',
-            title: 'My Classes',
+            title: 'Customer',
             icon: 'dashboard'
         },
         {
-            link: '#/addStudent',
-            title: 'Register Student',
+            link: '#/labour',
+            title: 'Labour',
             icon: 'person_add'
         },
         {
-            link: '#/addClass',
-            title: 'Add New Class',
+            link: '#/order',
+            title: 'Order',
             icon: 'group_add'
-        },
-        {
-            link: '#/addCourse',
-            title: 'Add New Course',
-            icon: 'local_library'
-        },
-        {
-            link: '../student/sendReport.php',
-            title: 'Send Report',
-            icon: 'notifications_active'
         }
     ];
     

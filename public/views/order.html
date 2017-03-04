@@ -48,54 +48,65 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-
+<div ng-repeat="order in orders">{{order}}</div>
             <form name="class" layout-padding ng-submit="submit()">
                 <div layout="column">
-                    <md-input-container>
-                        <label>Quantity</label>
-                        <input type="number" required name="qty" ng-model="Order.qty">
-                        <div ng-messages="Order.qty.$error">
-                            <div ng-message="required">Quantity is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Advance</label>
-                        <input type="number" required name="advance" ng-model="Order.advance">
-                        <div ng-messages="Order.advance.$error">
-                            <div ng-message="required">Quantity is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container flex class="remove-margin">
-                        <label>Dilivery Date</label>
-                        <md-datepicker ng-model="Labour.dlvdate" flex="100"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container flex class="remove-margin">
-                        <label>Order Date</label>
-                        <md-datepicker ng-model="Labour.orderdate" flex="100"></md-datepicker>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Customer Id</label>
-                        <md-select name="customerid" ng-model="Labour.customerid" required>
-                            <md-option ng-repeat="customer in customers" value="{{customer._id}}">{{customer.cname}}</md-option>
-                        </md-select>
-                    </md-input-container>
-                    <input type="hidden" value="false" ng-model="Labour.delivered" />
-                    <div ng-repeat="item in items">
-                        <md-input-container>
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Quantity</label>
+                            <input type="number" required name="qty" ng-model="Order.qty">
+                            <div ng-messages="Order.qty.$error">
+                                <div ng-message="required">Quantity is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex="50">
+                            <label>Advance</label>
+                            <input type="number" required name="advance" ng-model="Order.advance">
+                            <div ng-messages="Order.advance.$error">
+                                <div ng-message="required">Quantity is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <div layout="row">
+                        <md-input-container flex = "50">
+                            <label>Customer Id</label>
+                            <md-select name="customerid" ng-model="Order.customerid" required>
+                                <md-option ng-repeat="customer in customers" value="{{customer._id}}">{{customer.cname}}</md-option>
+                            </md-select>
+                        </md-input-container>
+                        <md-input-container flex = "50">
+                            <label>Dilivery Date</label>
+                            <md-datepicker ng-model="Order.dlvdate"></md-datepicker>
+                        </md-input-container>
+                        <md-input-container flex = "50">
+                            <label>Order Date</label>
+                            <md-datepicker ng-model="Order.orderdate"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                    <input type="hidden" value="false" ng-model="Order.delivered" />
+                    <div ng-repeat="item in items" layout="row">
+                        <md-input-container flex="20">
                             <label>Article Number</label>
                             <input name="advance" ng-model="Order.items[$index].articlenumber">
                         </md-input-container>
-                        <md-input-container>
+                        <md-input-container flex="20">
                             <label>Category</label>
                             <input name="category" ng-model="Order.items[$index].category">
                         </md-input-container>
-                        <md-input-container>
+                        <md-input-container flex="20">
                             <label>Price</label>
                             <input name="price" ng-model="Order.items[$index].price">
                         </md-input-container>
-                        <md-input-container>
+                        <md-input-container flex="20">
                             <label>Cost</label>
                             <input name="cost" ng-model="Order.items[$index].cost">
+                        </md-input-container>
+                        <md-input-container flex="20">
+                            <label>Assign Labour</label>
+                            <md-select name="labourid" ng-model="Order.items[$index].labourid">
+                                <md-option ng-repeat="labour in labours" value="{{labour._id}}">{{labour.name}}</md-option>
+                            </md-select>
                         </md-input-container>
                     </div>
                     <md-button ng-click="addItem()" class="md-accent">Add More Items</md-button>

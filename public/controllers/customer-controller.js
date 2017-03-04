@@ -10,28 +10,18 @@ angular.module("pains").controller("customerController", function ($scope, $http
     $scope.menu = [
         {
             link: '#/',
-            title: 'My Classes',
+            title: 'Customer',
             icon: 'dashboard'
         },
         {
-            link: '#/addStudent',
-            title: 'Register Student',
+            link: '#/labour',
+            title: 'Labour',
             icon: 'person_add'
         },
         {
-            link: '#/addClass',
-            title: 'Add New Class',
+            link: '#/order',
+            title: 'Order',
             icon: 'group_add'
-        },
-        {
-            link: '#/addCourse',
-            title: 'Add New Course',
-            icon: 'local_library'
-        },
-        {
-            link: '../student/sendReport.php',
-            title: 'Send Report',
-            icon: 'notifications_active'
         }
     ];
     $http.get('/customer')

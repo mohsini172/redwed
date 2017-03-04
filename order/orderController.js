@@ -56,7 +56,7 @@ module.exports = {
 			delivered : req.body.delivered,
             items: req.body.items
         });
-
+        console.log(order);
         order.save(function (err, order) {
             if (err) {
                 return res.status(500).json({
