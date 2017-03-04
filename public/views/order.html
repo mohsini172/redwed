@@ -80,7 +80,25 @@
                         </md-select>
                     </md-input-container>
                     <input type="hidden" value="false" ng-model="Labour.delivered" />
-
+                    <div ng-repeat="item in items">
+                        <md-input-container>
+                            <label>Article Number</label>
+                            <input name="advance" ng-model="Order.items[$index].articlenumber">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Category</label>
+                            <input name="category" ng-model="Order.items[$index].category">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Price</label>
+                            <input name="price" ng-model="Order.items[$index].price">
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Cost</label>
+                            <input name="cost" ng-model="Order.items[$index].cost">
+                        </md-input-container>
+                    </div>
+                    <md-button ng-click="addItem()" class="md-accent">Add More Items</md-button>
                 </div>
                 <div>
                     <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>

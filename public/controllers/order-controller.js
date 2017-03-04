@@ -7,6 +7,10 @@ angular.module("pains").controller("orderController", function ($scope, $http, $
             $mdSidenav(componentId).toggle();
         }
     }
+    $scope.items = [0];
+    $scope.addItem = function(){
+        $scope.items.push($scope.items[$scope.items.length-1]+1);
+    }
     $scope.menu = [
         {
             link: '#/',
