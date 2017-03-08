@@ -1,6 +1,7 @@
 angular.module("pains").controller("customerController", function ($scope, $http, $mdSidenav) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
+    $scope.selected = [];
 
     function buildToggler(componentId) {
         return function () {
@@ -36,6 +37,7 @@ angular.module("pains").controller("customerController", function ($scope, $http
     $http.get('/customer')
     .then(function(data){
         $scope.customers = data.data;
+        console.log(data.data);
     },function(error){
         alert("There was an error fetching classes");
     });
@@ -59,4 +61,7 @@ angular.module("pains").controller("customerController", function ($scope, $http
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
+
+
+    
 });

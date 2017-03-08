@@ -1,4 +1,4 @@
-angular.module("pains", ["ngRoute", "ngMaterial"]).config(['$routeProvider', function ($routeProvider) {
+angular.module("pains", ["ngRoute", "ngMaterial","md.data.table"]).config(['$routeProvider', function ($routeProvider) {
     $routeProvider.
         when('/', {
             templateUrl: 'views/customer.html',
