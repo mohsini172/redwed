@@ -48,19 +48,65 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-            <!--<div ng-repeat="labour in labours">{{labour.name}}</div>-->
-            <!--<md-list>
-                <md-list-item class="md-2-line md-whiteframe-2dp" ng-repeat="labour in labours">
-                    <div class="md-list-item-text" layout="column">
-                        <h3><b>Labour ID: </b> {{ labour._id }}</h3>
-                        <h4> <b>Labour Name: </b> {{ labour.name }}</h4>
-                    </div>
-                    <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button md-secondary">
-                        <md-icon> delete </md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>-->
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <span>Labour List</span>
+                    <span flex></span>
+                    <md-button ng-show="!formVisible" md-colors="{background:'green'}" ng-click="formVisible=!formVisible">+Add</md-button>
+                    <md-button ng-show="formVisible" md-colors="{background:'blue'}" ng-click="formVisible=!formVisible">Cancel</md-button>
+                </div>
+            </md-toolbar>
 
+            <form name="class" layout-padding ng-submit="submit()" ng-show="formVisible">
+                <div layout="column">
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Labour Name</label>
+                            <input required name="name" ng-model="Labour.name">
+                            <div ng-messages="Labour.name.$error">
+                                <div ng-message="required">Name is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Phone Number</label>
+                            <input required name="phone" ng-model="Labour.phone">
+                            <div ng-messages="Labour.phone.$error">
+                                <div ng-message="required">Phone Number is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Category</label>
+                            <md-select name="category" ng-model="Labour.category" required>
+                                <md-option value="c1">Category 1</md-option>
+                                <md-option value="c2">Category 2</md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Comments</label>
+                            <input required name="comments" ng-model="Labour.comments">
+                            <div ng-messages="Labour.comments.$error">
+                                <div ng-message="required">Comments is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Strength</label>
+                            <input required name="strength" ng-model="Labour.strength">
+                            <div ng-messages="Labour.strength.$error">
+                                <div ng-message="required">Strength is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container flex>
+                            <label>Date</label>
+                            <md-datepicker ng-model="Labour.hiredate" flex="100"></md-datepicker>
+                        </md-input-container>
+                    </div>
+                </div>
+                <div>
+                    <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>
+                </div>
+            </form>
             <md-table-container>
                 <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
                     <thead md-head md-order="order">
@@ -94,53 +140,7 @@
                 </table>
             </md-table-container>
 
-            <form name="class" layout-padding ng-submit="submit()">
-                <div layout="column">
-                    <md-input-container>
-                        <label>Labour Name</label>
-                        <input required name="name" ng-model="Labour.name">
-                        <div ng-messages="Labour.name.$error">
-                            <div ng-message="required">Name is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Phone Number</label>
-                        <input required name="phone" ng-model="Labour.phone">
-                        <div ng-messages="Labour.phone.$error">
-                            <div ng-message="required">Phone Number is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Category</label>
-                        <md-select name="category" ng-model="Labour.category" required>
-                            <md-option value="c1">Category 1</md-option>
-                            <md-option value="c2">Category 2</md-option>
-                        </md-select>
 
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Comments</label>
-                        <input required name="comments" ng-model="Labour.comments">
-                        <div ng-messages="Labour.comments.$error">
-                            <div ng-message="required">Comments is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Strength</label>
-                        <input required name="strength" ng-model="Labour.strength">
-                        <div ng-messages="Labour.strength.$error">
-                            <div ng-message="required">Strength is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container flex class="remove-margin">
-                        <label>Date</label>
-                        <md-datepicker ng-model="Labour.hiredate" flex="100"></md-datepicker>
-                    </md-input-container>
-                </div>
-                <div>
-                    <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>
-                </div>
-            </form>
         </md-content>
     </section>
 </div>

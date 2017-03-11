@@ -2,6 +2,8 @@ angular.module("pains").controller("orderController", function ($scope, $http, $
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];
+    $scope.formVisible = false;
+    
     function buildToggler(componentId) {
         return function () {
             $mdSidenav(componentId).toggle();

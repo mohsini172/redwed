@@ -51,42 +51,12 @@
             <md-toolbar class="md-table-toolbar md-default">
                 <div class="md-toolbar-tools">
                     <span>Customer List</span>
+                    <span flex></span>
+                    <md-button ng-show="!formVisible" md-colors="{background:'green'}" ng-click="formVisible=!formVisible">+Add</md-button>
+                    <md-button ng-show="formVisible" md-colors="{background:'blue'}" ng-click="formVisible=!formVisible">Cancel</md-button>
                 </div>
             </md-toolbar>
-            <md-table-container>
-                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="order">
-                        <tr md-row>
-                            <th md-column md-order-by="_id"> ID </th>
-                            <th md-column md-order-by="cname"> Name </th>
-                            <th md-column md-order-by="email"> Email </th>
-                            <th md-column md-order-by="city"> City </th>
-                            <th md-column md-order-by="phone1"> Phone 1 </th>
-                            <th md-column md-order-by="phone2"> Phone 2 </th>
-                            <th md-column> Delete </th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="customer in customers | orderBy: order">
-                            <td md-cell>{{customer._id}}</td>
-                            <td md-cell>{{customer.cname}}</td>
-                            <td md-cell>{{customer.email}}</td>
-                            <td md-cell>{{customer.city}}</td>
-                            <td md-cell>{{customer.phone1}}</td>
-                            <td md-cell>{{customer.phone2}}</td>
-                            <td md-cell>
-                                <md-button ng-click="deleteCustomer(customer._id)" class="md-icon-button">
-                                    <md-icon> delete </md-icon>
-                                </md-button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </md-table-container>
-            <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}"
-                md-on-paginate="getDesserts" md-page-select></md-table-pagination>
-
-            <form name="customerForm" ng-submit="submit()">
+            <form ng-if="formVisible" name="customerForm" ng-submit="submit()">
                 <div layout="column">
                     <div layout="row">
                         <md-input-container layout-margin flex="50">
@@ -133,6 +103,40 @@
                     <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>
                 </div>
             </form>
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="order">
+                        <tr md-row>
+                            <th md-column md-order-by="_id"> ID </th>
+                            <th md-column md-order-by="cname"> Name </th>
+                            <th md-column md-order-by="email"> Email </th>
+                            <th md-column md-order-by="city"> City </th>
+                            <th md-column md-order-by="phone1"> Phone 1 </th>
+                            <th md-column md-order-by="phone2"> Phone 2 </th>
+                            <th md-column> Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="customer in customers | orderBy: order">
+                            <td md-cell>{{customer._id}}</td>
+                            <td md-cell>{{customer.cname}}</td>
+                            <td md-cell>{{customer.email}}</td>
+                            <td md-cell>{{customer.city}}</td>
+                            <td md-cell>{{customer.phone1}}</td>
+                            <td md-cell>{{customer.phone2}}</td>
+                            <td md-cell>
+                                <md-button ng-click="deleteCustomer(customer._id)" class="md-icon-button">
+                                    <md-icon> delete </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+            <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}"
+                md-on-paginate="getDesserts" md-page-select></md-table-pagination>
+
+            
         </md-content>
     </section>
 </div>

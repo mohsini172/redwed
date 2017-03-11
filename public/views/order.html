@@ -48,36 +48,15 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-            
-            <md-table-container>
-                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
-                    <thead md-head md-order="orderBy">
-                        <tr md-row>
-                            <th md-column md-order-by="_id"> ID </th>
-                            <th md-column md-order-by="customerid.cname"> Customer Name </th>
-                            <th md-column md-order-by="dlvdate"> Delivery Date </th>
-                            <th md-column md-order-by="qty"> Quantity </th>
-                            <th md-column md-order-by="customerid.phone1"> Phone Number </th>
-                            <th md-column> Delete </th>
-                        </tr>
-                    </thead>
-                    <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
-                            <td md-cell>{{order._id}}</td>
-                            <td md-cell>{{order.customerid.cname }}</td>
-                            <td md-cell>{{order.dlvdate}}</td>
-                            <td md-cell>{{order.qty}}</td>
-                            <td md-cell>{{order.customerid.phone1}}</td>
-                            <td md-cell>
-                                <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button">
-                                    <md-icon> delete </md-icon>
-                                </md-button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </md-table-container>
-            <form name="class" layout-padding ng-submit="submit()">
+            <md-toolbar class="md-table-toolbar md-default">
+                <div class="md-toolbar-tools">
+                    <span>Order List</span>
+                    <span flex></span>
+                    <md-button ng-show="!formVisible" md-colors="{background:'green'}" ng-click="formVisible=!formVisible">+Add</md-button>
+                    <md-button ng-show="formVisible" md-colors="{background:'blue'}" ng-click="formVisible=!formVisible">Cancel</md-button>
+                </div>
+            </md-toolbar>
+            <form name="class" layout-padding ng-submit="submit()" ng-if="formVisible">
                 <div layout="column">
                     <div layout="row">
                         <md-input-container flex="50">
@@ -142,6 +121,34 @@
                     <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>
                 </div>
             </form>
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="orderBy">
+                        <tr md-row>
+                            <th md-column md-order-by="_id"> ID </th>
+                            <th md-column md-order-by="customerid.cname"> Customer Name </th>
+                            <th md-column md-order-by="dlvdate"> Delivery Date </th>
+                            <th md-column md-order-by="qty"> Quantity </th>
+                            <th md-column md-order-by="customerid.phone1"> Phone Number </th>
+                            <th md-column> Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
+                            <td md-cell>{{order._id}}</td>
+                            <td md-cell>{{order.customerid.cname }}</td>
+                            <td md-cell>{{order.dlvdate}}</td>
+                            <td md-cell>{{order.qty}}</td>
+                            <td md-cell>{{order.customerid.phone1}}</td>
+                            <td md-cell>
+                                <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button">
+                                    <md-icon> delete </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
         </md-content>
     </section>
 </div>
