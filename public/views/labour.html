@@ -4,7 +4,7 @@
 
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="3" layout="column">
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">PAINS</h1>
+                <h1 class="md-toolbar-tools">REDWED</h1>
             </md-toolbar>
             <md-list>
                 <md-list-item ng-repeat="item in menu" md-ink-ripple>
@@ -48,8 +48,8 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-<!--<div ng-repeat="labour in labours">{{labour.name}}</div>-->
-            <md-list>
+            <!--<div ng-repeat="labour in labours">{{labour.name}}</div>-->
+            <!--<md-list>
                 <md-list-item class="md-2-line md-whiteframe-2dp" ng-repeat="labour in labours">
                     <div class="md-list-item-text" layout="column">
                         <h3><b>Labour ID: </b> {{ labour._id }}</h3>
@@ -59,20 +59,54 @@
                         <md-icon> delete </md-icon>
                     </md-button>
                 </md-list-item>
-            </md-list>
+            </md-list>-->
+
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="order">
+                        <tr md-row>
+                            <th md-column md-order-by="_id"> ID </th>
+                            <th md-column md-order-by="name"> Name </th>
+                            <th md-column md-order-by="category"> Category </th>
+                            <th md-column md-order-by="phone"> Phone Number </th>
+                            <th md-column md-order-by="hiredate"> Hire Date </th>
+                            <th md-column md-order-by="strength"> Strength </th>
+                            <th md-column md-order-by="comments"> Comments </th>
+                            <th md-column> Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="labour in labours | orderBy: order">
+                            <td md-cell>{{labour._id}}</td>
+                            <td md-cell>{{labour.name}}</td>
+                            <td md-cell>{{labour.category}}</td>
+                            <td md-cell>{{labour.phone}}</td>
+                            <td md-cell>{{labour.hiredate}}</td>
+                            <td md-cell>{{labour.strength}}</td>
+                            <td md-cell>{{labour.comments}}</td>
+                            <td md-cell>
+                                <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button">
+                                    <md-icon> delete </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
+
             <form name="class" layout-padding ng-submit="submit()">
                 <div layout="column">
                     <md-input-container>
                         <label>Labour Name</label>
-                        <input required name="cname" ng-model="Labour.cname">
-                        <div ng-messages="Labour.cname.$error">
+                        <input required name="name" ng-model="Labour.name">
+                        <div ng-messages="Labour.name.$error">
                             <div ng-message="required">Name is required.</div>
                         </div>
                     </md-input-container>
                     <md-input-container>
                         <label>Phone Number</label>
-                        <input required name="phone1" ng-model="Labour.phone1">
-                        <div ng-messages="Labour.phone1.$error">
+                        <input required name="phone" ng-model="Labour.phone">
+                        <div ng-messages="Labour.phone.$error">
                             <div ng-message="required">Phone Number is required.</div>
                         </div>
                     </md-input-container>
@@ -100,7 +134,7 @@
                     </md-input-container>
                     <md-input-container flex class="remove-margin">
                         <label>Date</label>
-                        <md-datepicker ng-model="Labour.date" flex="100"></md-datepicker>
+                        <md-datepicker ng-model="Labour.hiredate" flex="100"></md-datepicker>
                     </md-input-container>
                 </div>
                 <div>

@@ -1,7 +1,7 @@
 angular.module("pains").controller("labourController", function ($scope, $http, $mdSidenav) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
-
+    $scope.selected = [];
     function buildToggler(componentId) {
         return function () {
             $mdSidenav(componentId).toggle();

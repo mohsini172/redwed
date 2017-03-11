@@ -1,18 +1,17 @@
 angular.module("pains").controller("orderController", function ($scope, $http, $mdSidenav) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
-
+    $scope.selected = [];
     function buildToggler(componentId) {
         return function () {
             $mdSidenav(componentId).toggle();
         }
     }
-    $scope.items = [0];
+    $scope.items = function(){
+        return new Array($scope.Order.qty);
+    }
     $scope.Order = {};
     $scope.Order.items = [];
-    $scope.addItem = function(){
-        $scope.items.push($scope.items[$scope.items.length-1]+1);
-    }
     $scope.menu = [
         {
             link: '#/',

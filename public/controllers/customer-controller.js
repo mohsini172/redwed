@@ -37,7 +37,6 @@ angular.module("pains").controller("customerController", function ($scope, $http
     $http.get('/customer')
     .then(function(data){
         $scope.customers = data.data;
-        console.log(data.data);
     },function(error){
         alert("There was an error fetching classes");
     });

@@ -4,7 +4,7 @@
 
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="3" layout="column">
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">PAINS</h1>
+                <h1 class="md-toolbar-tools">REDWED</h1>
             </md-toolbar>
             <md-list>
                 <md-list-item ng-repeat="item in menu" md-ink-ripple>
@@ -48,21 +48,35 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-            <!--<div ng-repeat="order in orders">{{order}}</div>-->
-            <md-list>
-                <md-list-item class="md-3-line md-whiteframe-2dp" ng-repeat="order in orders">
-                    <div class="md-list-item-text" layout="column">
-                        <h3><b>Order ID: </b> {{ order._id }}</h3>
-                        <h4> <b>Dilivery Date: </b> {{ order.dlvdate }}</h4>
-                        <h4> <b>Quantity: </b> {{ order.qty }}<br />
-                            <b>Diliver To: </b> {{order.customerid.cname}} <b>Phone: </b> {{order.customerid.phone1}}
-                        </h4>
-                    </div>
-                    <md-button ng-click="deleteOrder(order._id)" class="md-icon-button md-secondary">
-                        <md-icon> delete </md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>
+            
+            <md-table-container>
+                <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+                    <thead md-head md-order="orderBy">
+                        <tr md-row>
+                            <th md-column md-order-by="_id"> ID </th>
+                            <th md-column md-order-by="customerid.cname"> Customer Name </th>
+                            <th md-column md-order-by="dlvdate"> Delivery Date </th>
+                            <th md-column md-order-by="qty"> Quantity </th>
+                            <th md-column md-order-by="customerid.phone1"> Phone Number </th>
+                            <th md-column> Delete </th>
+                        </tr>
+                    </thead>
+                    <tbody md-body>
+                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
+                            <td md-cell>{{order._id}}</td>
+                            <td md-cell>{{order.customerid.cname }}</td>
+                            <td md-cell>{{order.dlvdate}}</td>
+                            <td md-cell>{{order.qty}}</td>
+                            <td md-cell>{{order.customerid.phone1}}</td>
+                            <td md-cell>
+                                <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button">
+                                    <md-icon> delete </md-icon>
+                                </md-button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </md-table-container>
             <form name="class" layout-padding ng-submit="submit()">
                 <div layout="column">
                     <div layout="row">
@@ -99,7 +113,7 @@
                         </md-input-container>
                     </div>
                     <input type="hidden" value="false" ng-model="Order.delivered" />
-                    <div ng-repeat="item in items" layout="row">
+                    <div ng-repeat="item in items() track by $index" layout="row">
                         <md-input-container flex="20">
                             <label>Article Number</label>
                             <input name="advance" ng-model="Order.items[$index].articlenumber">
@@ -123,7 +137,6 @@
                             </md-select>
                         </md-input-container>
                     </div>
-                    <md-button ng-click="addItem()" class="md-accent">Add More Items</md-button>
                 </div>
                 <div>
                     <md-button md-colors="{background:'primary'}" type="submit">Submit</md-button>

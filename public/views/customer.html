@@ -4,7 +4,7 @@
 
         <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="3" layout="column">
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">PAINS</h1>
+                <h1 class="md-toolbar-tools">REDWED</h1>
             </md-toolbar>
             <md-list>
                 <md-list-item ng-repeat="item in menu" md-ink-ripple>
@@ -21,7 +21,7 @@
             </md-list>
         </md-sidenav>
 
-        <md-content flex>
+        <md-content>
             <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
                     <md-button ng-click="toggleLeft('left')" hide-gt-md class="md-icon-button" aria-label="Settings">
@@ -48,21 +48,6 @@
                     </md-menu>
                 </div>
             </md-toolbar>
-
-
-            <!--<div ng-repeat="customer in customers">{{customer.cname}}</div>-->
-
-            <!--<md-list>
-                <md-list-item class="md-2-line md-whiteframe-2dp" ng-repeat="customer in customers">
-                    <div class="md-list-item-text" layout="column">
-                        <h3><b>Customer ID: </b> {{ customer._id }}</h3>
-                        <h4> <b>Customer Name: </b> {{ customer.cname }}</h4>
-                    </div>
-                    <md-button ng-click="deleteCustomer(customer._id)" class="md-icon-button md-secondary">
-                        <md-icon> delete </md-icon>
-                    </md-button>
-                </md-list-item>
-            </md-list>-->
             <md-toolbar class="md-table-toolbar md-default">
                 <div class="md-toolbar-tools">
                     <span>Customer List</span>
@@ -100,38 +85,44 @@
             </md-table-container>
             <md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{desserts.count}}"
                 md-on-paginate="getDesserts" md-page-select></md-table-pagination>
-            <form name="class" layout-padding ng-submit="submit()">
+
+            <form name="customerForm" ng-submit="submit()">
                 <div layout="column">
-                    <md-input-container>
-                        <label>Customer Name</label>
-                        <input required name="cname" ng-model="Customer.cname">
-                        <div ng-messages="Customer.cname.$error">
-                            <div ng-message="required">Name is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Phone Number 1</label>
-                        <input required name="phone1" ng-model="Customer.phone1">
-                        <div ng-messages="Customer.phone1.$error">
-                            <div ng-message="required">Phone Number is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Phone Number 2</label>
-                        <input required name="phone2" ng-model="Customer.phone2">
-                        <div ng-messages="Customer.phone2.$error">
-                            <div ng-message="required">Phone Number is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Customer Email</label>
-                        <input type="email" required name="email" ng-model="Customer.email">
-                        <div ng-messages="Customer.email.$error">
-                            <div ng-message="required">Email is required.</div>
-                        </div>
-                    </md-input-container>
-                    <md-input-container>
-                        <label>Customer Name</label>
+                    <div layout="row">
+                        <md-input-container layout-margin flex="50">
+                            <label>Customer Name</label>
+                            <input required name="cname" ng-model="Customer.cname">
+                            <div ng-messages="Customer.cname.$error">
+                                <div ng-message="required">Name is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container layout-margin flex="50">
+                            <label>Customer Email</label>
+                            <input type="email" required name="email" ng-model="Customer.email">
+                            <div ng-messages="Customer.email.$error">
+                                <div ng-message="required">Email is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container layout-margin flex="50">
+                            <label>Phone Number 2</label>
+                            <input required name="phone2" ng-model="Customer.phone2">
+                            <div ng-messages="Customer.phone2.$error">
+                                <div ng-message="required">Phone Number is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container layout-margin flex="50">
+                            <label>Phone Number 1</label>
+                            <input required name="phone1" ng-model="Customer.phone1">
+                            <div ng-messages="Customer.phone1.$error">
+                                <div ng-message="required">Phone Number is required.</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+
+                    <md-input-container layout-margin>
+                        <label>City Name</label>
                         <input required name="city" ng-model="Customer.city">
                         <div ng-messages="Customer.city.$error">
                             <div ng-message="required">City is required.</div>
@@ -145,15 +136,3 @@
         </md-content>
     </section>
 </div>
-<md-dialog aria-label="List dialog">
-    <md-dialog-content>
-        <md-list>
-            <md-list-item ng-repeat="item in items">
-                <p>Number {{item}}</p>
-            </md-list-item>
-        </md-list>
-    </md-dialog-content>
-    <md-dialog-actions>
-        <md-button ng-click="closeDialog()" class="md-primary">Close Dialog</md-button>
-    </md-dialog-actions>
-</md-dialog>
