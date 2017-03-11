@@ -1,4 +1,4 @@
-angular.module("pains").controller("orderController", function ($scope, $http, $mdSidenav) {
+angular.module("pains").controller("orderController", function ($scope, $rootScope, $http, $mdDialog, $mdSidenav) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];
@@ -82,4 +82,33 @@ angular.module("pains").controller("orderController", function ($scope, $http, $
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
+    $scope.openDialog = function (ev, data) {
+        $rootScope.dialogData = data;
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: '../views/info.dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+    function DialogController($scope, $rootScope, $mdDialog) {
+        $scope.attributes = [];
+        var customer = $rootScope.dialogData;
+        for (var i in customer) {
+            $scope.attributes.push({
+                "name": i,
+                "value": customer[i]
+            })
+        }
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+    }
 });

@@ -1,4 +1,4 @@
-angular.module("pains").controller("customerController", function ($scope, $http, $mdSidenav) {
+angular.module("pains").controller("customerController", function ($scope, $rootScope, $http, $mdSidenav, $mdDialog) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];
@@ -26,41 +26,68 @@ angular.module("pains").controller("customerController", function ($scope, $http
         }
     ];
 
-    $scope.deleteCustomer = function(id){
-        $http.delete('/customer/'+id)
-        .then(function(){
-            alert("SUCCESS")
-        },function(error){
-            alert("there was an error in deletion");
-        });
+    $scope.deleteCustomer = function (id) {
+        $http.delete('/customer/' + id)
+            .then(function () {
+                alert("SUCCESS")
+            }, function (error) {
+                alert("there was an error in deletion");
+            });
     }
     $http.get('/customer')
-    .then(function(data){
-        $scope.customers = data.data;
-    },function(error){
-        alert("There was an error fetching classes");
-    });
-    $scope.submit = function(){
-        $http.post('/customer',$scope.Customer)
-        .then(function(){
-            alert("SUCCESS")
-        },function(error){
-            alert("there was an error in insertion");
+        .then(function (data) {
+            $scope.customers = data.data;
+        }, function (error) {
+            alert("There was an error fetching classes");
         });
+    $scope.submit = function () {
+        $http.post('/customer', $scope.Customer)
+            .then(function () {
+                alert("SUCCESS")
+            }, function (error) {
+                alert("there was an error in insertion");
+            });
     }
-    $scope.logout = function(){
+    $scope.logout = function () {
         $http.post('/logout')
-        .then(function(){
-            window.location = "/public";
-        },function(error){
-            alert(error);
-        });
+            .then(function () {
+                window.location = "/public";
+            }, function (error) {
+                alert(error);
+            });
     }
     $scope.openMenu = function ($mdOpenMenu, ev) {
         originatorEv = ev;
         $mdOpenMenu(ev);
     };
 
-
-    
+    $scope.openDialog = function (ev, data) {
+        $rootScope.dialogData = data;
+        $mdDialog.show({
+            controller: DialogController,
+            templateUrl: '../views/info.dialog.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose: true,
+            fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
+        })
+            .then(function (answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+            }, function () {
+                $scope.status = 'You cancelled the dialog.';
+            });
+    };
+    function DialogController($scope, $rootScope, $mdDialog) {
+        $scope.attributes = [];
+        var customer = $rootScope.dialogData;
+        for (var i in customer) {
+            $scope.attributes.push({
+                "name": i,
+                "value": customer[i]
+            })
+        }
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+    }
 });

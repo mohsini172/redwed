@@ -134,7 +134,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
+                        <tr ng-click="openDialog($event, order)" md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
                             <td md-cell>{{order._id}}</td>
                             <td md-cell>{{order.customerid.cname }}</td>
                             <td md-cell>{{order.dlvdate}}</td>

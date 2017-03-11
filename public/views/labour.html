@@ -122,7 +122,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="labour in labours | orderBy: order">
+                        <tr ng-click="openDialog($event, labour)" md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="labour in labours | orderBy: order">
                             <td md-cell>{{labour._id}}</td>
                             <td md-cell>{{labour.name}}</td>
                             <td md-cell>{{labour.category}}</td>

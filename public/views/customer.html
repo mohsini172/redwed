@@ -21,7 +21,7 @@
             </md-list>
         </md-sidenav>
 
-        <md-content>
+        <md-content flex>
             <md-toolbar class="md-hue-2">
                 <div class="md-toolbar-tools">
                     <md-button ng-click="toggleLeft('left')" hide-gt-md class="md-icon-button" aria-label="Settings">
@@ -117,7 +117,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="customer in customers | orderBy: order">
+                        <tr ng-click="openDialog($event, customer)" md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="customer in customers | orderBy: order">
                             <td md-cell>{{customer._id}}</td>
                             <td md-cell>{{customer.cname}}</td>
                             <td md-cell>{{customer.email}}</td>
