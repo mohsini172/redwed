@@ -1,5 +1,5 @@
-<md-dialog aria-label="Mango (Fruit)">
-    <form ng-cloak>
+<md-dialog aria-label="Mango (Fruit)" flex="50">
+    <md-dialog-content>
         <md-toolbar>
             <div class="md-toolbar-tools">
                 <h2>Details</h2>
@@ -9,20 +9,16 @@
                 </md-button>
             </div>
         </md-toolbar>
-
-        <md-dialog-content>
-            <div class="md-dialog-content">
-                <div ng-repeat="attr in attributes">
-                    <b>{{attr.name}}: </b>
-                    {{attr.value}}
-                </div>
+        <div class="md-dialog-content">
+            <div ng-repeat="attr in attributes">
+                <b>{{attr.name}}: </b> {{attr.value}}
             </div>
-        </md-dialog-content>
+        </div>
+    </md-dialog-content>
 
-        <md-dialog-actions layout="row">
-            <md-button ng-click="hide()">
-                Close
-            </md-button>
-        </md-dialog-actions>
-    </form>
+    <md-dialog-actions layout="row">
+        <md-button ng-click="hide()">
+            Close
+        </md-button>
+    </md-dialog-actions>
 </md-dialog>
