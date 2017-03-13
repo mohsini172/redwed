@@ -49,9 +49,9 @@ angular.module("pains").controller("customerController", function ($scope, $root
             });
     }
     $scope.logout = function () {
-        $http.post('/logout')
+        $http.post('/user/logout')
             .then(function () {
-                window.location = "/public";
+                window.location = "/";
             }, function (error) {
                 alert(error);
             });

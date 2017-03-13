@@ -47,9 +47,9 @@ angular.module("pains").controller("labourController", function ($scope, $rootSc
         });
     }
     $scope.logout = function(){
-        $http.post('/logout')
+        $http.post('/user/logout')
         .then(function(){
-            window.location = "/public";
+            window.location = "/";
         },function(error){
             alert(error);
         });

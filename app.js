@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(session({
-    store: new MongoStore({"url":'mongodb://mohsini172:root@ds145669.mlab.com:45669/pains'}),
-    secret: 'isItRaining', 
+    store: new MongoStore({ "url": 'mongodb://mohsini172:root@ds145669.mlab.com:45669/pains' }),
+    secret: 'isItRaining',
     resave: false,
     saveUninitialized: false,
     httpOnly: false
@@ -26,18 +26,27 @@ app.use(session({
 var labour = require('./labour/labourRoutes');
 var customer = require('./customer/customerRoutes');
 var order = require('./order/orderRoutes');
+var user = require('./user');
 
 
+
+//authenticattion
+function authenticate(req, res, next) {
+    if (!req.session || !req.session.username) {
+        res.redirect("/auth");
+    }
+    else {
+        next();
+    }
+}
 
 //adding module routing links
-// app.use("/labour", auth.authenticate, laboures);
-app.use("/labour", labour);
-app.use("/customer", customer);
-app.use("/order", order);
-// app.use(user);
-app.use("/", express.static(__dirname + '/public'));
-// app.use("/public", express.static(__dirname + '/public'));
-
+app.use("/labour", authenticate, labour);
+app.use("/customer", authenticate, customer);
+app.use("/order", authenticate, order);
+app.use('/user', user);
+app.use("/auth", express.static(__dirname + '/auth'));
+app.use("/", authenticate, express.static(__dirname + '/public'));
 
 
 
