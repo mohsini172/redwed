@@ -1,4 +1,4 @@
-angular.module("pains").controller("labourController", function ($scope, $http, $mdSidenav) {
+angular.module("pains").controller("labourController", function ($scope, $rootScope, $mdDialog, $http, $mdSidenav) {
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];

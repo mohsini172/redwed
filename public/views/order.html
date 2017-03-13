@@ -134,14 +134,14 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr ng-click="openDialog($event, order)" md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="order in orders | orderBy: orderBy">
-                            <td md-cell>{{order._id}}</td>
-                            <td md-cell>{{order.customerid.cname }}</td>
-                            <td md-cell>{{order.dlvdate}}</td>
-                            <td md-cell>{{order.qty}}</td>
-                            <td md-cell>{{order.customerid.phone1}}</td>
+                        <tr md-row md-select="order" md-select-id="_id" ng-repeat="order in orders | orderBy: orderBy">
+                            <td ng-click="openDialog($event, order)" md-cell>{{order._id}}</td>
+                            <td ng-click="openDialog($event, order)" md-cell>{{order.customerid.cname }}</td>
+                            <td ng-click="openDialog($event, order)" md-cell>{{order.dlvdate}}</td>
+                            <td ng-click="openDialog($event, order)" md-cell>{{order.qty}}</td>
+                            <td ng-click="openDialog($event, order)" md-cell>{{order.customerid.phone1}}</td>
                             <td md-cell>
-                                <md-button ng-click="deleteLabour(labour._id)" class="md-icon-button">
+                                <md-button ng-click="deleteOrder(order._id)" class="md-icon-button">
                                     <md-icon> delete </md-icon>
                                 </md-button>
                             </td>

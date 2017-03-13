@@ -117,7 +117,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr ng-click="openDialog($event, customer)" md-row md-select="dessert" md-select-id="cname" md-auto-select ng-repeat="customer in customers | orderBy: order">
+                        <tr ng-click="openDialog($event, customer)" md-row md-select="customer" md-select-id="_id"  ng-repeat="customer in customers | orderBy: order">
                             <td md-cell>{{customer._id}}</td>
                             <td md-cell>{{customer.cname}}</td>
                             <td md-cell>{{customer.email}}</td>
