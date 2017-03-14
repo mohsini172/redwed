@@ -1,5 +1,5 @@
 var customerModel = require('./customerModel.js');
-
+var orderModel = require("../order/orderModel");
 /**
  * customerController.js
  *
@@ -27,7 +27,7 @@ module.exports = {
      */
     show: function (req, res) {
         var id = req.params.id;
-        customerModel.findOne({_id: id}, function (err, customer) {
+        customerModel.findOne({ _id: id }, function (err, customer) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting customer.',
@@ -47,7 +47,12 @@ module.exports = {
      * customerController.create()
      */
     create: function (req, res) {
-        var customer = new customerModel({			cname : req.body.cname,			phone1 : req.body.phone1,			phone2 : req.body.phone2,			email : req.body.email,			city : req.body.city
+        var customer = new customerModel({
+            cname: req.body.cname,
+            phone1: req.body.phone1,
+            phone2: req.body.phone2,
+            email: req.body.email,
+            city: req.body.city
         });
 
         customer.save(function (err, customer) {
@@ -66,7 +71,7 @@ module.exports = {
      */
     update: function (req, res) {
         var id = req.params.id;
-        customerModel.findOne({_id: id}, function (err, customer) {
+        customerModel.findOne({ _id: id }, function (err, customer) {
             if (err) {
                 return res.status(500).json({
                     message: 'Error when getting customer',
@@ -79,7 +84,12 @@ module.exports = {
                 });
             }
 
-            customer.cname = req.body.cname ? req.body.cname : customer.cname;			customer.phone1 = req.body.phone1 ? req.body.phone1 : customer.phone1;			customer.phone2 = req.body.phone2 ? req.body.phone2 : customer.phone2;			customer.email = req.body.email ? req.body.email : customer.email;			customer.city = req.body.city ? req.body.city : customer.city;			
+            customer.cname = req.body.cname ? req.body.cname : customer.cname;
+            customer.phone1 = req.body.phone1 ? req.body.phone1 : customer.phone1;
+            customer.phone2 = req.body.phone2 ? req.body.phone2 : customer.phone2;
+            customer.email = req.body.email ? req.body.email : customer.email;
+            customer.city = req.body.city ? req.body.city : customer.city;
+
             customer.save(function (err, customer) {
                 if (err) {
                     return res.status(500).json({
@@ -107,5 +117,17 @@ module.exports = {
             }
             return res.status(204).json();
         });
+    },
+    orders: function (req, res) {
+        var id = req.params.id;
+        orderModel.find({ customerid: id }, function (err, orders) {
+            if (err) {
+                return res.status(400).json({
+                    message: 'Error no order found.',
+                    error: err
+                });
+            }
+            res.json(orders);
+        })
     }
 };

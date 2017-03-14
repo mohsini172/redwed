@@ -48,6 +48,13 @@
                     </md-menu>
                 </div>
             </md-toolbar>
+            <div layout = "row">
+                <md-button ng-click="filterer='urgent'" flex = "10" md-colors="{background:'red'}">{{urgent}}</md-button>
+                <md-button ng-click="filterer='warning'" flex = "10" md-colors="{background:'orange'}">{{warning}}</md-button>
+                <md-button ng-click="filterer='successfull'" flex = "10" md-colors="{background:'green'}">{{successfull}}</md-button>
+                <span flex></span>
+                <md-button ng-click="filterer=''"  md-colors="{background:'blue'}" flex = "10">Clear Filter</md-button>
+            </div>
             <md-toolbar class="md-table-toolbar md-default">
                 <div class="md-toolbar-tools">
                     <span>Order List</span>
@@ -134,7 +141,7 @@
                         </tr>
                     </thead>
                     <tbody md-body>
-                        <tr md-row md-select="order" md-select-id="_id" ng-repeat="order in orders | orderBy: orderBy">
+                        <tr md-row md-select="order" md-select-id="_id" ng-repeat="order in orders | orderBy: orderBy | filter: filterer">
                             <td ng-click="openDialog($event, order)" md-cell>{{order._id}}</td>
                             <td ng-click="openDialog($event, order)" md-cell>{{order.customerid.cname }}</td>
                             <td ng-click="openDialog($event, order)" md-cell>{{order.dlvdate}}</td>

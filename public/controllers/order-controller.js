@@ -3,6 +3,7 @@ angular.module("pains").controller("orderController", function ($scope, $rootSco
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];
     $scope.formVisible = false;
+    $scope.filterer = "";
 
     function buildToggler(componentId) {
         return function () {
@@ -59,6 +60,26 @@ angular.module("pains").controller("orderController", function ($scope, $rootSco
     $http.get('/order')
         .then(function (data) {
             $scope.orders = data.data;
+            $scope.urgent = 0;
+            $scope.warning = 0;
+            $scope.successfull = 0;
+            var current = new Date();
+            for(var i in data.data){
+                var deliverydate = new Date(data.data[i].dlvdate);
+                var difference = (deliverydate-current)/86400000;
+                if((difference) <=10 ){
+                    $scope.urgent+=1;
+                    $scope.orders[i].type = "urgent";
+                }
+                else if((difference) <=18 ){
+                    $scope.warning +=1;
+                    $scope.orders[i].type = "warning";
+                }
+                else{
+                    $scope.successfull += 1;
+                    $scope.orders[i].type = "successfull";
+                }
+            }
         }, function (error) {
             alert("There was an error fetching classes");
         });

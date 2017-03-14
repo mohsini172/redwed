@@ -77,7 +77,7 @@ angular.module("pains").controller("customerController", function ($scope, $root
                 $scope.status = 'You cancelled the dialog.';
             });
     };
-    function DialogController($scope, $rootScope, $mdDialog) {
+    function DialogController($scope, $http, $rootScope, $mdDialog) {
         $scope.attributes = [];
         var customer = $rootScope.dialogData;
         for (var i in customer) {
@@ -86,6 +86,32 @@ angular.module("pains").controller("customerController", function ($scope, $root
                 "value": customer[i]
             })
         }
+        $http.get('/customer/order/' + customer._id).
+            then(function (data) {
+                var total = 0;
+                var price = 0;
+                for (var i in data.data) {
+                    for (var j in data.data[i].items) {
+                        $scope.attributes.push({
+                            "name": "Article No: ",
+                            "value": data.data[i].items[j].articlenumber
+                        })
+                        total += 1;
+                        price +=data.data[i].items[j].price;
+                    }
+                }
+                $scope.attributes.push({
+                    "name": "Total Items: ",
+                    "value": total
+                });
+                $scope.attributes.push({
+                    "name": "Total Price: ",
+                    "value": price
+                });
+
+            },
+            function (error) {
+            });
         $scope.hide = function () {
             $mdDialog.hide();
         };
