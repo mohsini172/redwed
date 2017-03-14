@@ -81,6 +81,7 @@ angular.module("pains").controller("customerController", function ($scope, $root
         $scope.attributes = [];
         var customer = $rootScope.dialogData;
         for (var i in customer) {
+            if(i!='$$hashKey' && i!='__v')
             $scope.attributes.push({
                 "name": i,
                 "value": customer[i]
