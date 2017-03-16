@@ -110,11 +110,11 @@
                         </md-input-container>
                         <md-input-container flex="20">
                             <label>Price</label>
-                            <input name="price" ng-model="Order.items[$index].price">
+                            <input type="number" name="price" ng-model="Order.items[$index].price">
                         </md-input-container>
                         <md-input-container flex="20">
                             <label>Cost</label>
-                            <input name="cost" ng-model="Order.items[$index].cost">
+                            <input type="number" name="cost" ng-model="Order.items[$index].cost">
                         </md-input-container>
                         <md-input-container flex="20">
                             <label>Assign Labour</label>
@@ -137,6 +137,7 @@
                             <th md-column md-order-by="dlvdate"> Delivery Date </th>
                             <th md-column md-order-by="qty"> Quantity </th>
                             <th md-column md-order-by="customerid.phone1"> Phone Number </th>
+                            <th md-column> Dilivery </th>
                             <th md-column> Delete </th>
                         </tr>
                     </thead>
@@ -147,6 +148,11 @@
                             <td ng-click="openDialog($event, order)" md-cell>{{order.dlvdate}}</td>
                             <td ng-click="openDialog($event, order)" md-cell>{{order.qty}}</td>
                             <td ng-click="openDialog($event, order)" md-cell>{{order.customerid.phone1}}</td>
+                            <td md-cell>
+                                <md-button ng-click="deliver(order._id)" class="md-icon-button" ng-hide="order.delivered">
+                                    <md-icon> done </md-icon>
+                                </md-button>
+                            </td>
                             <td md-cell>
                                 <md-button ng-click="deleteOrder(order._id)" class="md-icon-button">
                                     <md-icon> delete </md-icon>

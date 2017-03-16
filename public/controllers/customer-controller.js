@@ -23,6 +23,11 @@ angular.module("pains").controller("customerController", function ($scope, $root
             link: '#/order',
             title: 'Order',
             icon: 'group_add'
+        },
+        {
+            link: '#/summary',
+            title: 'Summary',
+            icon: 'group_add'
         }
     ];
 

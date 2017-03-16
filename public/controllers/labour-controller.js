@@ -22,6 +22,11 @@ angular.module("pains").controller("labourController", function ($scope, $rootSc
             link: '#/order',
             title: 'Order',
             icon: 'group_add'
+        },
+        {
+            link: '#/summary',
+            title: 'Summary',
+            icon: 'group_add'
         }
     ];
     $http.get('/labour')

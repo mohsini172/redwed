@@ -30,8 +30,23 @@ angular.module("pains").controller("orderController", function ($scope, $rootSco
             link: '#/order',
             title: 'Order',
             icon: 'group_add'
+        },
+        {
+            link: '#/summary',
+            title: 'Summary',
+            icon: 'group_add'
         }
     ];
+
+    $scope.deliver = function(id){
+        $http.post('/order/deliver',{"id":id})
+        .then(function(data){
+            alert("Success");
+        },
+        function(err){
+            alert("There was an error in update");
+        })
+    }
 
     $http.get('/labour')
         .then(function (data) {

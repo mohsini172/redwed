@@ -26,7 +26,10 @@ router.put('/:id', orderController.update);
  * DELETE
  */
 
-router.get('/summary', orderController.getOrders)
+router.get('/summary', orderController.getOrders);
+
+router.post('/deliver', orderController.markDelivered);
+
 router.delete('/:id', orderController.remove);
 
 module.exports = router;

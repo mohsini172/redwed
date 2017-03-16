@@ -30,6 +30,11 @@ angular.module("pains").controller("summaryController", function ($scope, $rootS
             link: '#/order',
             title: 'Order',
             icon: 'group_add'
+        },
+        {
+            link: '#/summary',
+            title: 'Summary',
+            icon: 'group_add'
         }
     ];
 

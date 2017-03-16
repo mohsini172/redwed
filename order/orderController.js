@@ -138,7 +138,7 @@ module.exports = {
                 'totalItems': 0,
                 'remainingItems': 0,
                 'totalOrders': 0,
-                'totalPaid' : 0
+                'totalPaid': 0
             };
             for (var i in orders) {
                 var items = orders[i].items;
@@ -148,16 +148,43 @@ module.exports = {
                     summary.totalCost += item.cost;
                 }
                 summary.totalItems += items.length;
-                if (!orders[i].delivered){
+                if (!orders[i].delivered) {
                     summary.remainingItems += items.length;
                     summary.totalAdvance += orders[i].advance;
                 }
-                else{
+                else {
                     summary.totalPaid += item.price;
                 }
             }
             summary.totalOrders = orders.length;
             res.send(summary);
         })
+    },
+    markDelivered: function (req, res) {
+        var id = req.body.id;
+        orderModel.findOne({ _id: id }, function (err, order) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Error when getting order.',
+                    error: err
+                });
+            }
+            if (!order) {
+                return res.status(404).json({
+                    message: 'No such order'
+                });
+            }
+            order.delivered = true;
+            order.save(function (err, order) {
+                if (err) {
+                    return res.status(500).json({
+                        message: 'Error when updating order.',
+                        error: err
+                    });
+                }
+
+                return res.json(order);
+            });
+        });
     }
 };
