@@ -1,0 +1,171 @@
+<div layout="column" style="height:100%;" ng-cloak>
+    <section layout="row" flex>
+
+
+        <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="3" layout="column">
+            <md-toolbar class="md-theme-indigo">
+                <h1 class="md-toolbar-tools">REDWED</h1>
+            </md-toolbar>
+            <md-list>
+                <md-list-item ng-repeat="item in menu" md-ink-ripple>
+                    <a href="{{item.link}}" class="remove-underline">
+                        <md-item-content layout="row" layout-align="start center">
+                            <div class="inset">
+                                <md-icon> {{item.icon}} </md-icon>
+                            </div>
+                            <div class="inset">{{item.title}}
+                            </div>
+                        </md-item-content>
+                    </a>
+                </md-list-item>
+            </md-list>
+        </md-sidenav>
+
+        <md-content flex>
+            <md-toolbar class="md-hue-2">
+                <div class="md-toolbar-tools">
+                    <md-button ng-click="toggleLeft('left')" hide-gt-md class="md-icon-button" aria-label="Settings">
+                        <md-icon> menu </md-icon>
+                    </md-button>
+                    <h2>
+                        <span>Summary</span>
+                    </h2>
+                    <span flex></span>
+
+                    <md-menu>
+                        <md-button aria-label="Open phone interactions menu" class="md-icon-button" ng-click="openMenu($mdOpenMenu, $event)">
+                            <md-icon> more_vert </md-icon>
+                        </md-button>
+                        <md-menu-content width="4">
+                            <md-menu-item>
+                                <md-button ng-click="logout()">
+                                    Logout
+                                </md-button>
+                            </md-menu-item>
+
+                            <!--<md-menu-divider></md-menu-divider>-->
+                        </md-menu-content>
+                    </md-menu>
+                </div>
+            </md-toolbar>
+            <div layout-padding>
+                <div layout="row">
+                    <div flex="50">
+                        <md-card>
+                            <md-card-header md-colors="{background:'green'}">
+                                <md-card-header-text>
+                                    <span class="md-title">Payments</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Price</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalPrice}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Advance</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalAdvance}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Cost</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalCost}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Paid Ammount</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalPaid}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Remaining Ammount</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalPaid - summary.totalAdvance}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                        </md-card>
+                    </div>
+                    <div flex="50">
+                        <md-card>
+                            <md-card-header md-colors="{background:'red'}">
+                                <md-card-header-text>
+                                    <span class="md-title">Dresses</span>
+                                </md-card-header-text>
+                            </md-card-header>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Items</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalItems}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Remaining Items</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.remainingItems}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            <div layout="row">
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">Total Orders</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                                <md-card-title flex="50">
+                                    <md-card-title-text>
+                                        <span class="md-headline">{{summary.totalOrders}}</span>
+                                    </md-card-title-text>
+                                </md-card-title>
+                            </div>
+                            
+                        </md-card>
+                    </div>
+                </div>
+        </md-content>
+    </section>
+    </div>

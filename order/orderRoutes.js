@@ -5,12 +5,12 @@ var orderController = require('./orderController.js');
 /*
  * GET
  */
-router.get('/', orderController.list);
+router.get('/all', orderController.list);
 
 /*
  * GET
  */
-router.get('/:id', orderController.show);
+router.get('/one/:id', orderController.show);
 
 /*
  * POST
@@ -25,6 +25,8 @@ router.put('/:id', orderController.update);
 /*
  * DELETE
  */
+
+router.get('/summary', orderController.getOrders)
 router.delete('/:id', orderController.remove);
 
 module.exports = router;

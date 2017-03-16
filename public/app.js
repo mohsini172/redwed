@@ -16,6 +16,10 @@ angular.module("pains", ["ngRoute", "ngMaterial","md.data.table"]).config(['$rou
             templateUrl:'views/addStudent.html',
             controller:'addStudentController'
         })
+        .when('/summary',{
+            templateUrl: 'views/summary.html',
+            controller: 'summaryController'
+        })
         .otherwise({
             redirectTo: '/'
         });

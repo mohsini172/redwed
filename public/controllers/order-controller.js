@@ -57,7 +57,7 @@ angular.module("pains").controller("orderController", function ($scope, $rootSco
             alert("There was an error fetching Customers");
         });
 
-    $http.get('/order')
+    $http.get('/order/all')
         .then(function (data) {
             $scope.orders = data.data;
             $scope.urgent = 0;
