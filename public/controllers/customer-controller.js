@@ -2,6 +2,7 @@ angular.module("pains").controller("customerController", function ($scope, $root
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');
     $scope.selected = [];
+    $scope.Customer = {};
 
     function buildToggler(componentId) {
         return function () {
